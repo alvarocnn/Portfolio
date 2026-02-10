@@ -4,9 +4,7 @@ const port = 3000;
 
 const startServer = async () => {
 	try {
-		await mongoose.connect(
-			"mongodb+srv://YOUR_USER:YOUR_PASSWORD@cluster0.tetdq54.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-		);
+		await mongoose.connect(process.env.MONGO_SERVER);
 		console.log("Connected to MongoDB");
 		app.listen(port, () => {
 			console.log(`Server is running on port ${port}`);
