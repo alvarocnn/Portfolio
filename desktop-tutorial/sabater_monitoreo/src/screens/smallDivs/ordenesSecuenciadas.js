@@ -1,0 +1,49 @@
+import React, { useState, useEffect } from 'react';
+import "./procesed.css";
+import { Link } from 'react-router-dom';
+
+function OrdenesSecuenciadas(){
+    const [OrdenesSecuenciadas, setOrdenesSecuenciadas] = useState([]);
+    const [isLoading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const responsePending = await fetch('http://localhost:8081/joinOrdenesSecuenciadas');
+                const pendingData = await responsePending.json();
+                setOrdenesSecuenciadas(pendingData);
+                setLoading(false); 
+                
+            } catch (error) {
+               console.log(error);   
+               setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+    
+    return(
+
+        <div className='fondo'>
+            <h1 style={{color:"white"}}>Ordenes secuenciadas </h1>
+            <Link to="/" style={{ marginLeft: '50px' }}>
+                <p style={{ color: 'white' }}>Atras</p>
+            </Link>
+            {isLoading ? ( 
+                <div className="loader"></div>
+            ) : (
+                <ul>
+                    {OrdenesSecuenciadas
+                        .filter(item => item.Vista === "OrdenesSecuenciadas")
+                        .sort((a, b) => a.Vista.localeCompare(b.Vista)) 
+                        .map((item, index) => (
+                            <li key={index} style={{ color: 'white', lineHeight: '2' }}>
+                            <strong>Vista:</strong> {item.Vista},<strong>Código Orfa:</strong> {item.CodOrfa},<strong>Código empresa:</strong> {item.T010codemp},<strong>Num lin:</strong> {item.T424numlin},<strong>Lote:</strong> {item.T424lote},<strong>Cod alm:</strong> {item.T311codalm}
+                            </li>
+                        ))}
+                </ul>
+            )}
+        </div>
+    );
+}
+export default OrdenesSecuenciadas;

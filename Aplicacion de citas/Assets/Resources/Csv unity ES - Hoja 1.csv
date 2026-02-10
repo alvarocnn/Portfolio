@@ -1,0 +1,70 @@
+login_scene_user_name,Introduce el nombre de usuario
+login_scene_user_password,Introduce la contraseña
+login_scene_log_in,Iniciar sesion
+login_scene_register,Registrarse
+register_scene_name,Introduce tu nombre 
+register_scene_mail,Introduce tu correo
+register_scene_password,Introduce tu contraseña
+register_scene_description,Introduce tu descripción
+register_scene_button,Iniciar sesion
+FAQ_scene_name,Preguntas más frecuentes
+FAQ_scene_profile_coincidences,Perfiles y coincidencias
+FAQ_scene_application_management,Manejo de la aplicaión
+FAQ_scene_security_privacy,Seguridad y privacidad
+FAQ_scene_interaction_comunication,Interacciones y comunicaciones
+FAQ_scene_help_support,Soporte y ayuda
+pop_up_profile_1q,"¿Cómo se generan las coincidencias o ""matches""?
+pop_up_profile_1a,"Se generan por proximidad, es decir las personas que salen al hacer match son personas cerca de  ti."
+pop_up_profile_2q,¿Puedo buscar perfiles específicos?
+pop_up_profile_2a,"No no se pueden buscar perfiles, específicos."
+pop_up_profile_3q,"¿Existen filtros para personalizar las preferencias de búsqueda?"
+pop_up_profile_3a,"Si, se pueden poner filtros a la búsqueda como la edad, etc."
+pop_up_profile_4q,¿Cómo se actualizan o modifican los perfiles?
+pop_up_profile_4a,"En el apartado perfil, dentro de la pantalla principal se pueden modificar las características del perfil."
+pop_up_profile_5q,¿Hay alguna función para destacar intereses comunes?
+pop_up_profile_5a,"Hay intereses entre personas, pero no es posible  destacarlas."
+pop_up_support_1q,¿Cuál es el proceso de soporte al cliente?
+pop_up_support_1a,Puedes contactárnos por correo.
+pop_up_support_2q,"¿Hay alguna línea de ayuda o chat en vivo?"
+pop_up_support_2a,De momento no está implementado.
+pop_up_support_3q,"¿Cuáles son los recursos disponibles para resolver problemas técnicos?"
+pop_up_support_3a,"Por correo electrónico, solucionamos todos los problemas que pudiera tener."
+pop_up_support_4q,"¿La aplicación ofrece alguna asistencia para la creación de perfiles?"
+pop_up_support_4a,En la guia de la aplicación se especifíca como se crea un usuario.
+pop_up_support_5q,¿Existen eventos o actividades sociales organizadas a través de la aplicación?
+pop_up_support_5a,La aplicación no se hace cargos de los eventos entre personas.
+pop_up_interaction_1q,"¿Cómo se inician las conversaciones con otros usuarios?"
+pop_up_interaction_1a,"Una vez que las dos personas han hecho ""match"" en la pantalla de chats dicha persona te aparecerá para que puedas hablar. "
+pop_up_interaction_2q,"¿Existen herramientas de comunicación segura?"
+pop_up_interaction_2a,Toda comunicación entre personas está encriptada.
+pop_up_interaction_3q,"¿Se pueden bloquear o reportar perfiles inapropiados?"
+pop_up_interaction_3a,"Si, se pueden bloquear perfiles inapropiados."
+pop_up_interaction_4q,¿Hay opciones para la privacidad en las conversaciones?
+pop_up_interaction_4a,"No, la privacidad es nuestra prioridad y todas las conversaciones están encriptadas."
+pop_up_interaction_5q,"¿La aplicación ofrece sugerencias o consejos para romper el hielo?"
+pop_up_interaction_5a,Te las vas a tener que apañar chaval.
+pop_up_security_1q,¿Cómo se garantiza la seguridad de la información personal?
+pop_up_security_1a,Todos los chat e información personal está encriptada.
+pop_up_security_2q,"¿Qué medidas de seguridad existen para evitar perfiles falsos o fraudes?"
+pop_up_security_2a,"Se pueden reportar e inmediatamente cuando lo revisemos, la cuenta será eliminada."
+pop_up_security_3q,"¿Puedo controlar quién puede ver mi perfil?"
+pop_up_security_3a,"No, esa información no se puede consultar."
+pop_up_security_4q,"¿Hay algún filtro de seguridad para proteger a los usuarios mayores?"
+pop_up_security_4a,"La seguridad es para todos la misma, es decir que no hay ningún problema."
+pop_up_security_5q,¿Cómo se manejan los datos sensibles en la aplicación?
+pop_up_security_5a,Si detectamos información que no debería pertenecer a la aplicación será eliminada.
+pop_up_management_1q,¿Cómo funciona la aplicación?
+pop_up_management_1a,"Utilizando las diferentes apartados de la misma, como chatear con personas, etc."
+pop_up_management_2q,¿Cuál es el proceso de registro?
+pop_up_management_2a,"Ingresando nombre completo, correo, contraseña y edad."
+pop_up_management_3q,¿Cómo se crean perfiles y se personalizan?
+pop_up_management_3a,Al cerra la sesión puedes volver a crear otro perfil o iniciar sesión con una ya existente.
+pop_up_management_4q,¿Qué funciones y herramientas ofrece la aplicación?
+pop_up_management_4a,"Puedes crear un perfil, buscar a personas con las que encontrar el amor, chatear con ellas, modificar tu perfil, etc."
+pop_up_management_5q,¿Hay algún tutorial o guía de uso disponible?
+pop_up_management_5a,"No, de momento no hay nigún tutorial de uso disponible."
+message_scene_placeholder,Introduce el mensaje 
+pop_up_settings_user_manual,Manual de usuario
+pop_up_settings_privacy_policy,Politica de privacidad
+pop_up_settings_FAQ,FAQ
+pop_up_settings,Cerrar sesión

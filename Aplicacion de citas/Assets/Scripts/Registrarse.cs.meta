@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 522fc4c6545cd9a499e92e9594cadd27
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - nombre: {instanceID: 0}
+  - correo: {instanceID: 0}
+  - contrasena: {instanceID: 0}
+  - edad: {instanceID: 0}
+  - descripcion: {instanceID: 0}
+  - botonIniciarSesion: {instanceID: 0}
+  - textoIncompleto: {instanceID: 0}
+  - imagen: {fileID: 21300000, guid: 2a87519efcbfa4b4285e8e8456be6399, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

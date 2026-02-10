@@ -1,0 +1,123 @@
+﻿@using PracticaExamenFinal.Models;
+@model List<Producto>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    th {
+        padding: 10px; /* Ajusta el valor según tus preferencias */
+    }
+</style>
+<div class="text-center">
+    
+    <h1 class="display-4">@DateTime.Now</h1>
+    <p>@Proyecto_Final2.Properties.Resources.Saludo</p>
+    
+    
+    <div
+        style="display :flex ; flex-direction:row ; width:100% ; align-items:center; justify-content:center"
+    >
+        <form method="get" action="/Home">
+            <fieldset>
+                <button >Español</button>
+                <input type="hidden" name="culture" value="es-ES" />
+                <input type="hidden" name="ui-culture" value="es-ES" />
+            </fieldset>
+        </form>
+
+        <form method="get" action="/Home">
+            <fieldset>
+                <button>Inglés</button>
+                <input type="hidden" name="culture" value="en-US" />
+                <input type="hidden" name="ui-culture" value="en-US" />
+            </fieldset>
+
+        </form>
+
+        <form method="get" action="/Home">
+            <fieldset>
+                <button>Francés</button>
+                <input type="hidden" name="culture" value="fr-FR" />
+                <input type="hidden" name="ui-culture" value="fr-FR" />
+            </fieldset>
+        </form>
+        
+        
+
+    </div>
+    <h3 style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.Servicio_de_acceso_a_datos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>@Proyecto_Final2.Properties.Resources.NombreProducto</th>
+                <th>@Proyecto_Final2.Properties.Resources.Precio</th>
+                <th>@Proyecto_Final2.Properties.Resources.Categoria</th>
+                <th>@Proyecto_Final2.Properties.Resources.Descripcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in Model)
+            {
+                <tr>
+                    <td>@producto.Nombre</td>
+                    <td>@producto.Precio</td>
+                    <td>@producto.Categoria</td>
+                    <td>@producto.Descripcion</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h3 style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.Servicio_de_cifrado_de_datos</h3>
+    <form style="text-align:left; margin-top:15px" method="post" asp-action="CifrarCadena">
+        <fieldset>
+           <input type="text" name="inputCadenaCifrar"/>
+            <button>@Proyecto_Final2.Properties.Resources.EnviarCadena</button>
+           
+        </fieldset>
+    </form>
+
+    <p style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.MensajeCifradoAsimetrico @ViewBag.MensajeCifradoAsimetrico</p>
+    <p style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.MensajeDescifradoAsimetrico @ViewBag.MensajeDescifradoAsimetrico</p>
+    <p style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.MensajeCifradoSimetrico @ViewBag.MensajeCifradoSimetrico </p>
+    <p style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.MensajeDescifradoSimetrico @ViewBag.MensajeDescifradoAsimetrico</p>
+    <h3 style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.Hash_del_archivo</h3>
+    <p style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.HashImagen </p>
+
+    <img src="@Url.Content("~/Images/Imagen_paisaje.webp")" width="300" height="300" />
+    <p style="text-align:left; margin-top:15px">Hash: @ViewBag.HashFichero</p>
+
+    <form style="text-align:left; margin-top:15px" method="post" asp-action="VerificarHash" >
+        <fieldset>
+            <input type="text" name="inputHash" placeholder="Comprobar el hash" />
+            <button>@Proyecto_Final2.Properties.Resources.EnviarCadena</button>
+
+        </fieldset>
+    </form>
+
+    <p style ="text-align:left; margin-top:15px"> @ViewBag.ResultadoHash</p>
+
+    <h3 style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.Hash_del_archivo</h3>
+    <form style="text-align:left; margin-top:15px" method="post" asp-action="Firmar">
+        <fieldset>
+            <input type="text" name="inputFirma"  />
+            <button>@Proyecto_Final2.Properties.Resources.EnviarCadena</button>
+
+        </fieldset>
+    </form>
+    <p style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.FirmaMensaje @ViewBag.Firma</p>
+    <p style="text-align:left; margin-top:15px">@Proyecto_Final2.Properties.Resources.ClavesMensaje @ViewBag.Claves</p>
+    
+    <form style="text-align:left; margin-top:15px" method="post" asp-action="VerificarFirma">
+        <fieldset>
+            <input style="width: 300px" type="text" name="inputMensaje" placeholder="Introudce el mensaje" />
+            <input style="width: 300px" type="text" name="inputFirma" placeholder="Introudce la firma" />
+            <input style="width: 300px" type="text" name="inputClaves" placeholder="Introudce las llaves" />
+            <button>@Proyecto_Final2.Properties.Resources.EnviarCadena</button>
+        </fieldset>
+    </form>
+    <p style ="text-align:left; margin-top:15px">@ViewBag.FirmaValida </p>
+
+
+
+</div>

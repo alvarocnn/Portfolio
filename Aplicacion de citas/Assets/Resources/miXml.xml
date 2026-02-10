@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<personas>
+    <persona>
+        <id>0</id>
+        <nombre>Pepita</nombre>
+        <correo>pepita02@gmail.com</correo>
+        <contraseña>1234</contraseña>
+        <edad>73</edad>
+        <descripcion>Hola me llamo pepita tengo 73 años y me encanta regar mi huerto</descripcion>
+    </persona>
+    <persona>
+        <id>1</id>
+        <nombre>Pepa</nombre>
+        <correo>Pepalatraviesa@gmail.com</correo>
+        <contraseña>1234</contraseña>
+        <edad>78</edad>
+        <descripcion>Hola me llamo pepa, tengo 78 años y me encanta el cocido</descripcion>
+    </persona>
+    <persona>
+        <id>2</id>
+        <nombre>Josefa</nombre>
+        <correo>Josefa</correo>
+        <contraseña>1234</contraseña>
+        <edad>56</edad>
+        <descripcion>Hola me llamo josefa tengo 56 años y me gusta la musica</descripcion>
+    </persona>
+    <persona>
+        <id>3</id>
+        <nombre>Luisa</nombre>
+        <correo>luisagarrido@gmail.com</correo>
+        <contraseña>1234</contraseña>
+        <edad>68</edad>
+        <descripcion>Hola me llamo maria tengo 65 recien jubilada y muy traviesa</descripcion>
+    </persona>
+    <persona>
+        <id>4</id>
+        <nombre>Jośe</nombre>
+        <correo>jose34@gmail.com</correo>
+        <contraseña>1234</contraseña>
+        <edad>84</edad>
+        <descripcion>Hola me llamo José tengo 84 años y me gusta el cocido</descripcion>
+    </persona>
+    <persona>
+        <id>5</id>
+        <nombre>María</nombre>
+        <correo>mariamaria@gmail.com</correo>
+        <contraseña>1234</contraseña>
+        <edad>65</edad>
+        <descripcion>Hola me llamo maria tengo 65 recien jubilada y muy traviesa</descripcion>
+    </persona>
+    <persona>
+        <id>6</id>
+        <nombre>Raúl</nombre>
+        <correo>raul@gmail.com</correo>
+        <contraseña>1234</contraseña>
+        <edad>79</edad>
+        <descripcion>Hola me llamo Raúl tengo 79 años y me gustan los coches</descripcion>
+    </persona>
+    <persona>
+        <id>7</id>
+        <nombre>Pepe</nombre>
+        <correo>pepe98@gmail.com</correo>
+        <contraseña>1234</contraseña>
+        <edad>56</edad>
+        <descripcion>Buenas me llamo Pepe y me gustan las muheres</descripcion>
+    </persona>
+    <persona>
+        <id>8</id>
+        <nombre>x</nombre>
+        <correo>x@x.com</correo>
+        <contraseña>1234</contraseña>
+        <edad>70</edad>
+        <descripcion>Hola me llamo x y me guta programar</descripcion>
+    </persona>
+    
+    <persona>
+        <id>9</id>
+        <nombre>Daniel</nombre>
+        <correo>danielcano@gmail.com</correo>
+        <contraseña>1234</contraseña>
+        <edad>87</edad>
+        <descripcion>Hola soy Daniel tengo 87 años y me gusta el surf, una vez casi me mato</descripcion>
+    </persona>
+</personas>
