@@ -1,0 +1,319 @@
+
+import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import { useAuth } from '../../contexts/authContext';
+import { useNavigate } from 'react-router-dom';
+import { fetchRecipes } from '../../api/index';
+import debounce from 'lodash.debounce'; // Para implementar debounce en la búsqueda
+
+// Componente para las tarjetas de receta
+const RecipeCard = React.memo(({ recipe, onClick }) => (
+    <div className="recipe-card" onClick={() => onClick(recipe.id)}>
+        <h3>{recipe.name}</h3>
+        {recipe.thumbnail_url && (
+            <img
+                src={recipe.thumbnail_url}
+                alt={recipe.name}
+                className="recipe-thumbnail"
+                loading="lazy" // Lazy loading de imágenes
+            />
+        )}
+        <p>{recipe.description}</p>
+    </div>
+));
+
+const Home = () => {
+    const { currentUser, logout } = useAuth();
+    const navigate = useNavigate();
+
+    const [recipes, setRecipes] = useState([]);
+    const [filteredRecipes, setFilteredRecipes] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+
+    const recipesPerPage = 20;
+
+    // Redirigir si no hay usuario
+    useEffect(() => {
+        if (!currentUser) {
+            navigate('/login', { replace: true });
+        }
+    }, [currentUser, navigate]);
+
+    // Obtener recetas
+    const loadRecipes = async (page) => {
+        setIsLoading(true);
+        try {
+            const offset = (page - 1) * recipesPerPage;
+            const response = await fetchRecipes(offset, recipesPerPage);
+            if (response?.results?.length > 0) {
+                setRecipes(response.results);
+                setFilteredRecipes(response.results);
+                setTotalPages(Math.ceil(response.totalResults / recipesPerPage));
+            } else {
+                setRecipes([]);
+                setFilteredRecipes([]);
+                setTotalPages(1);
+            }
+        } catch (err) {
+            console.error('Error fetching recipes:', err);
+            setError('There was an error fetching recipes.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        loadRecipes(currentPage);
+    }, [currentPage]);
+
+    // Manejo de búsqueda con debounce
+    const handleSearch = useCallback(
+        debounce((term) => {
+            const filtered = recipes.filter((recipe) =>
+                recipe.name.toLowerCase().includes(term.toLowerCase())
+            );
+            setFilteredRecipes(filtered);
+        }, 300),
+        [recipes]
+    );
+
+    useEffect(() => {
+        handleSearch(searchTerm);
+    }, [searchTerm, handleSearch]);
+
+    const handleSearchInputChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const handleRecipeClick = (recipeId) => {
+        navigate(`/details/${recipeId}`);
+    };
+
+    const goToPage = (page) => {
+        setCurrentPage(page);
+    };
+
+    const paginationButtons = useMemo(
+        () =>
+            Array.from({ length: totalPages }, (_, index) => (
+                <button
+                    key={index}
+                    className={`pagination-btn ${currentPage === index + 1 ? 'active' : ''}`}
+                    onClick={() => goToPage(index + 1)}
+                >
+                    {index + 1}
+                </button>
+            )),
+        [currentPage, totalPages]
+    );
+
+    if (error) {
+        return (
+            <div className="error-container">
+                <p>{error}</p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="home-container">
+            <div className="welcome-message">
+                Hello {currentUser?.displayName || currentUser?.email}, you are now logged in.
+            </div>
+            <button onClick={logout} className="logout-btn">
+                Log Out
+            </button>
+
+            <div className="search-container">
+                <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleSearchInputChange}
+                    placeholder="Search for a recipe..."
+                    className="search-input"
+                />
+            </div>
+
+            {/* Botón de favoritos */}
+            <button onClick={() => navigate('/favorites')} className="favorites-btn">
+                Go to Favorites
+            </button>
+
+            {isLoading ? (
+                <div className="loading-container">
+                    {Array.from({ length: recipesPerPage }, (_, index) => (
+                        <div key={index} className="skeleton-card" />
+                    ))}
+                </div>
+            ) : (
+                <div className="recipes-list">
+                    {filteredRecipes.length > 0 ? (
+                        filteredRecipes.map((recipe) => (
+                            <RecipeCard
+                                key={recipe.id}
+                                recipe={recipe}
+                                onClick={handleRecipeClick}
+                            />
+                        ))
+                    ) : (
+                        <p>No matching recipes found</p>
+                    )}
+                </div>
+            )}
+
+            {/* Paginación */}
+            <div className="pagination">
+                <button
+                    className="pagination-btn"
+                    onClick={() => goToPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    Previous
+                </button>
+                {paginationButtons}
+                <button
+                    className="pagination-btn"
+                    onClick={() => goToPage(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
+            </div>
+
+            <style jsx>{`
+                .home-container {
+                    font-size: 1.25rem;
+                    font-weight: bold;
+                    padding: 2rem;
+                    text-align: center;
+                    color: #4b4b4b;
+                }
+
+                .welcome-message {
+                    margin-bottom: 1rem;
+                }
+
+                .logout-btn {
+                    margin-top: 1rem;
+                    padding: 0.5rem 1rem;
+                    background-color: #e11d48;
+                    color: white;
+                    border-radius: 0.375rem;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                    font-weight: 600;
+                }
+
+                .logout-btn:hover {
+                    background-color: #9b1c3f;
+                }
+
+                .favorites-btn {
+                    margin-top: 1rem;
+                    padding: 0.5rem 1rem;
+                    background-color: #3498db;
+                    color: white;
+                    border-radius: 0.375rem;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                    font-weight: 600;
+                }
+
+                .favorites-btn:hover {
+                    background-color: #2980b9;
+                }
+
+                .search-container {
+                    margin: 2rem 0;
+                }
+
+                .search-input {
+                    width: 100%;
+                    max-width: 400px;
+                    padding: 0.5rem;
+                    border: 1px solid #ddd;
+                    border-radius: 0.375rem;
+                    font-size: 1rem;
+                }
+
+                .recipes-list {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 1rem;
+                    margin-top: 2rem;
+                }
+
+                .recipe-card {
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                    padding: 1rem;
+                    border-radius: 0.5rem;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                    text-align: left;
+                    max-width: 300px;
+                    margin: 0 auto;
+                    height: 350px;
+                    overflow: hidden;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+
+                .recipe-card:hover {
+                    transform: translateY(-5px); /* Eleva la tarjeta ligeramente */
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+                }
+
+                .recipe-card img {
+                    max-height: 200px;
+                    object-fit: cover;
+                    width: 100%;
+                    border-radius: 0.5rem;
+                }
+
+                .pagination {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 2rem 0;
+                }
+
+                .pagination-btn {
+                    padding: 0.5rem 1rem;
+                    margin: 0 0.25rem;
+                    background-color: #3498db;
+                    color: white;
+                    border: none;
+                    border-radius: 0.375rem;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
+                }
+
+                .pagination-btn.active {
+                    background-color: #2c7bbf;
+                    font-weight: bold;
+                }
+
+                .pagination-btn:disabled {
+                    background-color: #ccc;
+                    cursor: not-allowed;
+                }
+
+                .pagination-btn:hover:not(:disabled) {
+                    background-color: #217dbb;
+                }
+
+                .skeleton-card {
+                    height: 350px;
+                    width: 100%;
+                    background: #ddd;
+                    border-radius: 0.5rem;
+                    margin-bottom: 1rem;
+                }
+            `}</style>
+        </div>
+    );*
+};
+
+export default Home;
