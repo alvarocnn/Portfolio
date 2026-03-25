@@ -1,0 +1,20 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "Forkify project",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.16.4",
+    "lightningcss-win32-x64-msvc": "^1.32.0",
+    "parcel": "^2.16.4"
+  },
+  "dependencies": {
+    "fraction.js": "^5.3.4",
+    "fractional": "^1.0.0"
+  }
+}
