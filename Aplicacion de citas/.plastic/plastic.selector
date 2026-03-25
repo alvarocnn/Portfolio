@@ -1,4 +1,0 @@
-repository "Aplicacion de citas 1.4@alvarocn@cloud"
-  path "/"
-    br "/main"
-    co "/main"
